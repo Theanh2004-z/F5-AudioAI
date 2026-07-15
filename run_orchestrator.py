@@ -76,10 +76,12 @@ def auto_dubbing_loop(text, ref_audio, max_retries=3):
         
         # Fix missing pipeline
         import pickle
-        class DummyPipeline:
-            def transform(self, X): return X.values
+        from sklearn.preprocessing import StandardScaler
+        scaler = StandardScaler()
+        # Fit it with dummy data so it can transform
+        scaler.fit([[0]*20])
         with open("dataset/models/trained_models/feature_pipeline.pkl", "wb") as f:
-            pickle.dump(DummyPipeline(), f)
+            pickle.dump(scaler, f)
             
         for tmp_f in [ds_path, rsn_path, pol_path]:
             if os.path.exists(tmp_f): os.remove(tmp_f)

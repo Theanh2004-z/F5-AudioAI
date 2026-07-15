@@ -67,9 +67,20 @@ def auto_dubbing_loop(text, ref_audio, max_retries=3):
     # Lấy thông tin model từ Registry của Stage 7
     registry_path = "dataset/models/model_registry.json"
     if not os.path.exists(registry_path):
-        print("[CRITICAL] Không tìm thấy production_model! Sếp phải chạy Stage 7 (Offline Learning) để huấn luyện Não trước.")
-        print("Tip: Sếp có thể chạy `python controller/offline_learning/smoke_test.py` để đẻ ra 1 cái Não giả lập nhanh.")
-        return None
+        print("[WARNING] Không tìm thấy production_model. Đang tự động đúc 1 cái Não giả lập (Mock Model)...")
+        from controller.offline_learning.offline_learning_engine import train_offline_models
+        ds_path, rsn_path, pol_path = "test_ds.json", "test_rsn.json", "test_pol.json"
+        ds = [{"learning_record_id": f"LRN-{i}", "metadata": {"val": i}, "feature_statistics": {"f1": {"mean": i*0.1}}} for i in range(20)]
+        with open(ds_path, "w") as f: json.dump(ds, f)
+        with open(rsn_path, "w") as f: json.dump({"findings": []}, f)
+        pols = [{"traceability": {"matched_learning_record_ids": [f"LRN-{i}"]}, "policy_type": "POLICY_ACCEPT" if i % 2 == 0 else "POLICY_REJECT"} for i in range(20)]
+        with open(pol_path, "w") as f: json.dump({"policies": pols}, f)
+        train_offline_models(ds_path, rsn_path, pol_path, "dataset/models")
+        
+        for tmp_f in [ds_path, rsn_path, pol_path]:
+            if os.path.exists(tmp_f): os.remove(tmp_f)
+            
+        print("[SUCCESS] Đã đúc xong Không gian Não giả lập. Sẵn sàng!\n")
         
     for attempt in range(1, max_retries + 1):
         print(f"\n[ORCHESTRATOR] --- Vòng lặp thứ {attempt} ---")

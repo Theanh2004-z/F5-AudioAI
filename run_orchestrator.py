@@ -67,7 +67,17 @@ def auto_dubbing_loop(text, ref_audio, max_retries=3):
         print("[WARNING] Không tìm thấy production_model. Đang tự động đúc 1 cái Não giả lập (Mock Model)...")
         from controller.offline_learning.offline_learning_engine import train_offline_models
         ds_path, rsn_path, pol_path = "test_ds.json", "test_rsn.json", "test_pol.json"
-        ds = [{"learning_record_id": f"LRN-{i}", "metadata": {"val": i}, "feature_statistics": {"f1": {"mean": i*0.1}}} for i in range(20)]
+        ds = [
+            {
+                "learning_record_id": f"LRN-{i}", 
+                "metadata": {"speed": 1.0 + (i * 0.01)}, 
+                "feature_statistics": {
+                    "tempo": {"mean": 120.0},
+                    "pitch": {"mean": 200.0},
+                    "volume": {"mean": 0.8}
+                }
+            } for i in range(20)
+        ]
         with open(ds_path, "w") as f: json.dump(ds, f)
         with open(rsn_path, "w") as f: json.dump({"findings": []}, f)
         pols = [{"traceability": {"matched_learning_record_ids": [f"LRN-{i}"]}, "policy_type": "POLICY_ACCEPT" if i % 2 == 0 else "POLICY_REJECT"} for i in range(20)]

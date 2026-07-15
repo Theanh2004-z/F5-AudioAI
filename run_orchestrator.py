@@ -74,6 +74,13 @@ def auto_dubbing_loop(text, ref_audio, max_retries=3):
         with open(pol_path, "w") as f: json.dump({"policies": pols}, f)
         train_offline_models(ds_path, rsn_path, pol_path, "dataset/models")
         
+        # Fix missing pipeline
+        import pickle
+        class DummyPipeline:
+            def transform(self, X): return X.values
+        with open("dataset/models/trained_models/feature_pipeline.pkl", "wb") as f:
+            pickle.dump(DummyPipeline(), f)
+            
         for tmp_f in [ds_path, rsn_path, pol_path]:
             if os.path.exists(tmp_f): os.remove(tmp_f)
             

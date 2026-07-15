@@ -14,14 +14,11 @@ import sys
 # Thêm đường dẫn project vào sys.path để các module có thể import nhau
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
 
-# Import thử module F5-TTS (Sẽ báo lỗi trên máy local nếu chưa cài, nhưng sẽ chạy mượt trên Colab)
-try:
-    from f5_tts.infer.utils_infer import infer_process
-except ImportError:
-    print("[WARNING] Thư viện f5_tts không tồn tại trên máy này. Sẽ sử dụng Mock Generation để test luồng.")
-    def infer_process(ref_audio, text, speed):
-        time.sleep(1)
-        return "mock_generated_audio.wav"
+# Hàm giả lập F5-TTS Generation.
+# Trong môi trường Production thật, sếp sẽ viết code Load Model F5-TTS và gọi hàm infer_process() tại đây.
+def mock_generate_audio(ref_audio, text, speed):
+    time.sleep(1)
+    return "mock_generated_audio.wav"
 
 from controller.inference_engine.inference_engine import run_inference
 from controller.recommendation_engine.recommendation_engine import generate_recommendation
@@ -85,9 +82,9 @@ def auto_dubbing_loop(text, ref_audio, max_retries=3):
     for attempt in range(1, max_retries + 1):
         print(f"\n[ORCHESTRATOR] --- Vòng lặp thứ {attempt} ---")
         
-        # 1. Bắt F5-TTS đẻ Audio
+        # 1. Bắt F5-TTS đẻ Audio (Dùng hàm Mock cho mục đích demo)
         print(f"[F5-TTS] Đang sinh Audio với tốc độ {current_speed}...")
-        gen_audio = infer_process(ref_audio=ref_audio, text=text, speed=current_speed)
+        gen_audio = mock_generate_audio(ref_audio=ref_audio, text=text, speed=current_speed)
         
         # 2. Đo đạc file Audio (Mô phỏng Stage 1-5)
         sample_path = f"dataset/inference/live_sample_{attempt}.json"

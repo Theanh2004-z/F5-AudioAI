@@ -1,0 +1,29 @@
+{
+    "snapshot_version": "1.0.0",
+    "features": {
+        "pitch_f0_mean": 170.0,
+        "pitch_f0_variance": 800.0,
+        "pitch_voiced_ratio": 0.72,
+        "energy_rms_mean": 0.1,
+        "energy_rms_variance": 0.002,
+        "energy_peak": 0.65,
+        "energy_crest_factor": 8.1,
+        "rhythm_speech_duration": 3.2,
+        "rhythm_silence_duration": 0.8,
+        "rhythm_speech_rate": 105.0,
+        "rhythm_pause_count": 3.0,
+        "rhythm_mean_pause_duration": 0.27,
+        "spectral_centroid_mean": 2100.0,
+        "spectral_rolloff_mean": 4800.0,
+        "spectral_bandwidth_mean": 2300.0,
+        "spectral_contrast_mean": 22.0,
+        "vq_zero_crossing_rate": 0.055,
+        "vq_spectral_flatness": 0.012,
+        "vq_harmonic_ratio": 0.78,
+        "pitch_confidence": 1.0,
+        "energy_confidence": 1.0,
+        "rhythm_confidence": 1.0,
+        "spectral_confidence": 1.0,
+        "vq_confidence": 1.0
+    }
+}

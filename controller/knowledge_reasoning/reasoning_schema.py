@@ -1,0 +1,18 @@
+"""
+reasoning_schema.py
+"""
+REASONING_SCHEMA_VERSION = "1.0.0"
+
+class ReasoningError(Exception):
+    def __init__(self, code, message):
+        self.code = code
+        self.message = message
+        super().__init__(f"[{code}] {message}")
+
+ERROR_RETRIEVAL_NOT_FOUND = "RETRIEVAL_NOT_FOUND"
+ERROR_RULE_REGISTRY_CORRUPTED = "RULE_REGISTRY_CORRUPTED"
+ERROR_SCHEMA_VERSION_MISMATCH = "SCHEMA_VERSION_MISMATCH"
+ERROR_ARTIFACT_CORRUPTED = "ARTIFACT_CORRUPTED"
+ERROR_CHECKSUM_MISMATCH = "CHECKSUM_MISMATCH"
+
+FINDING_TYPE_NO_APPLICABLE_RULE = "NO_APPLICABLE_RULE"

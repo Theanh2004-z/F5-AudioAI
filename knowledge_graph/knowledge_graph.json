@@ -1,0 +1,737 @@
+{
+    "metadata": {
+        "version": "1.0.0",
+        "timestamp": "20260714_225814",
+        "description": "Static knowledge graph connecting acoustic features to F5-TTS inference levers. Describes relationships only \u2014 no optimization.",
+        "node_count": 27,
+        "edge_count": 32
+    },
+    "nodes": [
+        {
+            "id": "pitch_f0_mean",
+            "node_type": "FEATURE",
+            "group": "Pitch"
+        },
+        {
+            "id": "pitch_f0_variance",
+            "node_type": "FEATURE",
+            "group": "Pitch"
+        },
+        {
+            "id": "pitch_voiced_ratio",
+            "node_type": "FEATURE",
+            "group": "Pitch"
+        },
+        {
+            "id": "energy_rms_mean",
+            "node_type": "FEATURE",
+            "group": "Energy"
+        },
+        {
+            "id": "energy_rms_variance",
+            "node_type": "FEATURE",
+            "group": "Energy"
+        },
+        {
+            "id": "energy_peak",
+            "node_type": "FEATURE",
+            "group": "Energy"
+        },
+        {
+            "id": "energy_crest_factor",
+            "node_type": "FEATURE",
+            "group": "Energy"
+        },
+        {
+            "id": "rhythm_speech_duration",
+            "node_type": "FEATURE",
+            "group": "Rhythm"
+        },
+        {
+            "id": "rhythm_silence_duration",
+            "node_type": "FEATURE",
+            "group": "Rhythm"
+        },
+        {
+            "id": "rhythm_speech_rate",
+            "node_type": "FEATURE",
+            "group": "Rhythm"
+        },
+        {
+            "id": "rhythm_pause_count",
+            "node_type": "FEATURE",
+            "group": "Rhythm"
+        },
+        {
+            "id": "rhythm_mean_pause_duration",
+            "node_type": "FEATURE",
+            "group": "Rhythm"
+        },
+        {
+            "id": "spectral_centroid_mean",
+            "node_type": "FEATURE",
+            "group": "Spectral"
+        },
+        {
+            "id": "spectral_rolloff_mean",
+            "node_type": "FEATURE",
+            "group": "Spectral"
+        },
+        {
+            "id": "spectral_bandwidth_mean",
+            "node_type": "FEATURE",
+            "group": "Spectral"
+        },
+        {
+            "id": "spectral_contrast_mean",
+            "node_type": "FEATURE",
+            "group": "Spectral"
+        },
+        {
+            "id": "vq_zero_crossing_rate",
+            "node_type": "FEATURE",
+            "group": "Voice Quality"
+        },
+        {
+            "id": "vq_spectral_flatness",
+            "node_type": "FEATURE",
+            "group": "Voice Quality"
+        },
+        {
+            "id": "vq_harmonic_ratio",
+            "node_type": "FEATURE",
+            "group": "Voice Quality"
+        },
+        {
+            "id": "speed",
+            "node_type": "LEVER",
+            "lever_id": "PRE-001",
+            "accessibility": "API_ACCESSIBLE",
+            "safety": "HIGH",
+            "coupling": "LOW",
+            "linearity": "LINEAR"
+        },
+        {
+            "id": "target_rms",
+            "node_type": "LEVER",
+            "lever_id": "PRE-002",
+            "accessibility": "API_ACCESSIBLE",
+            "safety": "HIGH",
+            "coupling": "LOW",
+            "linearity": "LINEAR"
+        },
+        {
+            "id": "cross_fade_duration",
+            "node_type": "LEVER",
+            "lever_id": "PRE-003",
+            "accessibility": "API_ACCESSIBLE",
+            "safety": "HIGH",
+            "coupling": "MEDIUM",
+            "linearity": "NON_LINEAR"
+        },
+        {
+            "id": "nfe_step",
+            "node_type": "LEVER",
+            "lever_id": "CFM-001",
+            "accessibility": "API_ACCESSIBLE",
+            "safety": "HIGH",
+            "coupling": "HIGH",
+            "linearity": "ASYMPTOTIC"
+        },
+        {
+            "id": "cfg_strength",
+            "node_type": "LEVER",
+            "lever_id": "CFM-002",
+            "accessibility": "API_ACCESSIBLE",
+            "safety": "MEDIUM",
+            "coupling": "HIGH",
+            "linearity": "NON_LINEAR"
+        },
+        {
+            "id": "sway_sampling_coef",
+            "node_type": "LEVER",
+            "lever_id": "CFM-003",
+            "accessibility": "API_ACCESSIBLE",
+            "safety": "LOW",
+            "coupling": "HIGH",
+            "linearity": "NON_LINEAR"
+        },
+        {
+            "id": "edit_mask",
+            "node_type": "LEVER",
+            "lever_id": "CFM-004",
+            "accessibility": "API_ACCESSIBLE",
+            "safety": "MEDIUM",
+            "coupling": "LOW",
+            "linearity": "BINARY"
+        },
+        {
+            "id": "drop_audio_cond",
+            "node_type": "LEVER",
+            "lever_id": "DIT-001",
+            "accessibility": "INTERNAL_ONLY",
+            "safety": "EXTREME_RISK",
+            "coupling": "EXTREME",
+            "linearity": "BINARY"
+        }
+    ],
+    "edges": [
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "pitch_f0_mean",
+            "target": "cfg_strength",
+            "relationship_type": "DIRECT",
+            "evidence": "CFG amplifies adherence to reference conditioning, which encodes F0 contour."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "pitch_f0_variance",
+            "target": "cfg_strength",
+            "relationship_type": "DIRECT",
+            "evidence": "Higher CFG forces tighter adherence; lower CFG allows more F0 drift."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "pitch_voiced_ratio",
+            "target": "cfg_strength",
+            "relationship_type": "INDIRECT",
+            "evidence": "CFG indirectly determines how well voiced/unvoiced regions are preserved."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "pitch_voiced_ratio",
+            "target": "edit_mask",
+            "relationship_type": "DIRECT",
+            "evidence": "Masking voiced frames forces model to regenerate only unvoiced regions."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "energy_rms_mean",
+            "target": "target_rms",
+            "relationship_type": "DIRECT",
+            "evidence": "target_rms scales audio amplitude before and after generation."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "energy_rms_mean",
+            "target": "cfg_strength",
+            "relationship_type": "INDIRECT",
+            "evidence": "CFG adherence to reference audio also captures its energy envelope."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "energy_rms_variance",
+            "target": "cfg_strength",
+            "relationship_type": "INDIRECT",
+            "evidence": "CFG affects how dynamically the energy varies across time."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "energy_peak",
+            "target": "target_rms",
+            "relationship_type": "DIRECT",
+            "evidence": "Peak amplitude is directly scaled by target_rms normalization."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "energy_crest_factor",
+            "target": "target_rms",
+            "relationship_type": "COUPLED",
+            "evidence": "Crest factor = peak / rms. Both are scaled by target_rms, but ratio may shift."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "rhythm_speech_duration",
+            "target": "speed",
+            "relationship_type": "DIRECT",
+            "evidence": "speed divides the character-proportional duration estimate linearly."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "rhythm_silence_duration",
+            "target": "speed",
+            "relationship_type": "DIRECT",
+            "evidence": "Total duration changes with speed; silence is derived from total minus speech."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "rhythm_silence_duration",
+            "target": "cross_fade_duration",
+            "relationship_type": "INDIRECT",
+            "evidence": "Cross-fade merges chunk boundaries, potentially eliminating inter-chunk silences."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "rhythm_speech_rate",
+            "target": "speed",
+            "relationship_type": "DIRECT",
+            "evidence": "Speech rate is inversely proportional to output duration."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "rhythm_pause_count",
+            "target": "cross_fade_duration",
+            "relationship_type": "INDIRECT",
+            "evidence": "Longer cross-fade can merge pauses at chunk boundaries."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "rhythm_mean_pause_duration",
+            "target": "speed",
+            "relationship_type": "INDIRECT",
+            "evidence": "Pause durations are affected by total duration scaling."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "rhythm_mean_pause_duration",
+            "target": "cross_fade_duration",
+            "relationship_type": "INDIRECT",
+            "evidence": "Cross-fade duration physically overlaps silence regions."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "spectral_centroid_mean",
+            "target": "cfg_strength",
+            "relationship_type": "INDIRECT",
+            "evidence": "CFG conditioning adherence shapes spectral envelope of output."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "spectral_centroid_mean",
+            "target": "sway_sampling_coef",
+            "relationship_type": "INDIRECT",
+            "evidence": "Timestep warping changes which frequency components emerge first in integration."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "spectral_rolloff_mean",
+            "target": "cfg_strength",
+            "relationship_type": "INDIRECT",
+            "evidence": "CFG constrains frequency rolloff toward reference."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "spectral_rolloff_mean",
+            "target": "sway_sampling_coef",
+            "relationship_type": "INDIRECT",
+            "evidence": "Sway sampling affects high-frequency integration fidelity."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "spectral_bandwidth_mean",
+            "target": "cfg_strength",
+            "relationship_type": "INDIRECT",
+            "evidence": "CFG narrows bandwidth toward reference when strength is high."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "spectral_bandwidth_mean",
+            "target": "sway_sampling_coef",
+            "relationship_type": "INDIRECT",
+            "evidence": "Timestep concentration affects spectral band resolution."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "spectral_contrast_mean",
+            "target": "cfg_strength",
+            "relationship_type": "INDIRECT",
+            "evidence": "High CFG preserves harmonic-noise contrast from reference conditioning."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "vq_zero_crossing_rate",
+            "target": "nfe_step",
+            "relationship_type": "INDIRECT",
+            "evidence": "Higher NFE reduces high-frequency noise artifacts that drive ZCR up."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "vq_zero_crossing_rate",
+            "target": "sway_sampling_coef",
+            "relationship_type": "INDIRECT",
+            "evidence": "Sway warping affects integration smoothness in high-frequency bands."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "vq_spectral_flatness",
+            "target": "nfe_step",
+            "relationship_type": "INDIRECT",
+            "evidence": "More steps yields a less noisy (less flat) spectrogram."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "vq_spectral_flatness",
+            "target": "sway_sampling_coef",
+            "relationship_type": "INDIRECT",
+            "evidence": "Timestep distribution shapes noise floor."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "vq_harmonic_ratio",
+            "target": "nfe_step",
+            "relationship_type": "INDIRECT",
+            "evidence": "Step count directly affects harmonic reconstruction fidelity."
+        },
+        {
+            "edge_type": "FEATURE_TO_LEVER",
+            "source": "vq_harmonic_ratio",
+            "target": "cfg_strength",
+            "relationship_type": "COUPLED",
+            "evidence": "Extreme CFG can introduce artifacts that depress harmonic ratio."
+        },
+        {
+            "edge_type": "LEVER_DEPENDENCY",
+            "source": "cfg_strength",
+            "target": "drop_audio_cond",
+            "relationship": "REQUIRES",
+            "direction": "cfg_strength -> drop_audio_cond",
+            "description": "cfg_strength > 0 triggers a dual forward pass inside CFM.sample. The null (unconditioned) prediction uses drop_audio_cond=True internally. cfg_strength cannot function without this routing."
+        },
+        {
+            "edge_type": "LEVER_DEPENDENCY",
+            "source": "sway_sampling_coef",
+            "target": "nfe_step",
+            "relationship": "CONSTRAINS",
+            "direction": "nfe_step -> sway_sampling_coef",
+            "description": "The effectiveness of sway sampling depends on the total number of timesteps. With very few steps (< 8), the cosine warp collapses too many steps into a single region, negating its intended benefit."
+        },
+        {
+            "edge_type": "LEVER_DEPENDENCY",
+            "source": "edit_mask",
+            "target": "cfg_strength",
+            "relationship": "ENTANGLED",
+            "direction": "edit_mask <-> cfg_strength",
+            "description": "When edit_mask is active, cond_mask combines with it before the CFG dual forward. The cfg_strength then applies only to the unmasked (to-be-generated) frames. The two levers jointly determine the generation boundary."
+        }
+    ],
+    "intervention_catalog": {
+        "speed": {
+            "lever_id": "PRE-001",
+            "name": "speed",
+            "file": "src/f5_tts/infer/utils_infer.py",
+            "class": null,
+            "function": "infer_batch_process",
+            "variable": "speed",
+            "accessibility": "API_ACCESSIBLE",
+            "coupling": "LOW",
+            "linearity": "LINEAR",
+            "safety": "HIGH",
+            "expected_influence": {
+                "Rhythm": "HIGH",
+                "Pitch": "NONE",
+                "Energy": "NONE",
+                "Spectral": "NONE",
+                "Voice Quality": "NONE"
+            },
+            "evidence_source": "SOURCE_CODE_INSPECTION",
+            "notes": "Controls the integer frame count passed to CFM.sample as `duration`.",
+            "connected_features": [
+                {
+                    "feature": "rhythm_speech_duration",
+                    "relationship_type": "DIRECT",
+                    "evidence": "speed divides the character-proportional duration estimate linearly."
+                },
+                {
+                    "feature": "rhythm_silence_duration",
+                    "relationship_type": "DIRECT",
+                    "evidence": "Total duration changes with speed; silence is derived from total minus speech."
+                },
+                {
+                    "feature": "rhythm_speech_rate",
+                    "relationship_type": "DIRECT",
+                    "evidence": "Speech rate is inversely proportional to output duration."
+                },
+                {
+                    "feature": "rhythm_mean_pause_duration",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Pause durations are affected by total duration scaling."
+                }
+            ]
+        },
+        "target_rms": {
+            "lever_id": "PRE-002",
+            "name": "target_rms",
+            "file": "src/f5_tts/infer/utils_infer.py",
+            "class": null,
+            "function": "infer_batch_process",
+            "variable": "target_rms",
+            "accessibility": "API_ACCESSIBLE",
+            "coupling": "LOW",
+            "linearity": "LINEAR",
+            "safety": "HIGH",
+            "expected_influence": {
+                "Energy": "HIGH",
+                "Pitch": "NONE",
+                "Rhythm": "NONE",
+                "Spectral": "NONE",
+                "Voice Quality": "NONE"
+            },
+            "evidence_source": "SOURCE_CODE_INSPECTION",
+            "notes": "Applied pre-inference (ref audio scaling) and post-inference (inverse scaling of output).",
+            "connected_features": [
+                {
+                    "feature": "energy_rms_mean",
+                    "relationship_type": "DIRECT",
+                    "evidence": "target_rms scales audio amplitude before and after generation."
+                },
+                {
+                    "feature": "energy_peak",
+                    "relationship_type": "DIRECT",
+                    "evidence": "Peak amplitude is directly scaled by target_rms normalization."
+                },
+                {
+                    "feature": "energy_crest_factor",
+                    "relationship_type": "COUPLED",
+                    "evidence": "Crest factor = peak / rms. Both are scaled by target_rms, but ratio may shift."
+                }
+            ]
+        },
+        "cross_fade_duration": {
+            "lever_id": "PRE-003",
+            "name": "cross_fade_duration",
+            "file": "src/f5_tts/infer/utils_infer.py",
+            "class": null,
+            "function": "infer_batch_process",
+            "variable": "cross_fade_duration",
+            "accessibility": "API_ACCESSIBLE",
+            "coupling": "MEDIUM",
+            "linearity": "NON_LINEAR",
+            "safety": "HIGH",
+            "expected_influence": {
+                "Rhythm": "MEDIUM",
+                "Spectral": "LOW",
+                "Pitch": "NONE",
+                "Energy": "NONE",
+                "Voice Quality": "NONE"
+            },
+            "evidence_source": "SOURCE_CODE_INSPECTION",
+            "notes": "Only active when multi-chunk batching occurs (long text).",
+            "connected_features": [
+                {
+                    "feature": "rhythm_silence_duration",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Cross-fade merges chunk boundaries, potentially eliminating inter-chunk silences."
+                },
+                {
+                    "feature": "rhythm_pause_count",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Longer cross-fade can merge pauses at chunk boundaries."
+                },
+                {
+                    "feature": "rhythm_mean_pause_duration",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Cross-fade duration physically overlaps silence regions."
+                }
+            ]
+        },
+        "nfe_step": {
+            "lever_id": "CFM-001",
+            "name": "nfe_step",
+            "file": "src/f5_tts/model/cfm.py",
+            "class": "CFM",
+            "function": "sample",
+            "variable": "steps",
+            "accessibility": "API_ACCESSIBLE",
+            "coupling": "HIGH",
+            "linearity": "ASYMPTOTIC",
+            "safety": "HIGH",
+            "expected_influence": {
+                "Voice Quality": "MEDIUM",
+                "Spectral": "LOW",
+                "Pitch": "NONE",
+                "Energy": "NONE",
+                "Rhythm": "NONE"
+            },
+            "evidence_source": "SOURCE_CODE_INSPECTION",
+            "notes": "Pure compute-quality trade-off. Not a stylistic parameter.",
+            "connected_features": [
+                {
+                    "feature": "vq_zero_crossing_rate",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Higher NFE reduces high-frequency noise artifacts that drive ZCR up."
+                },
+                {
+                    "feature": "vq_spectral_flatness",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "More steps yields a less noisy (less flat) spectrogram."
+                },
+                {
+                    "feature": "vq_harmonic_ratio",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Step count directly affects harmonic reconstruction fidelity."
+                }
+            ]
+        },
+        "cfg_strength": {
+            "lever_id": "CFM-002",
+            "name": "cfg_strength",
+            "file": "src/f5_tts/model/cfm.py",
+            "class": "CFM",
+            "function": "sample",
+            "variable": "cfg_strength",
+            "accessibility": "API_ACCESSIBLE",
+            "coupling": "HIGH",
+            "linearity": "NON_LINEAR",
+            "safety": "MEDIUM",
+            "expected_influence": {
+                "Pitch": "HIGH",
+                "Energy": "HIGH",
+                "Voice Quality": "MEDIUM",
+                "Spectral": "MEDIUM",
+                "Rhythm": "LOW"
+            },
+            "evidence_source": "SOURCE_CODE_INSPECTION",
+            "notes": "Extrapolates: pred + (pred - null_pred) * cfg_strength. High coupling to drop_audio_cond.",
+            "connected_features": [
+                {
+                    "feature": "pitch_f0_mean",
+                    "relationship_type": "DIRECT",
+                    "evidence": "CFG amplifies adherence to reference conditioning, which encodes F0 contour."
+                },
+                {
+                    "feature": "pitch_f0_variance",
+                    "relationship_type": "DIRECT",
+                    "evidence": "Higher CFG forces tighter adherence; lower CFG allows more F0 drift."
+                },
+                {
+                    "feature": "pitch_voiced_ratio",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "CFG indirectly determines how well voiced/unvoiced regions are preserved."
+                },
+                {
+                    "feature": "energy_rms_mean",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "CFG adherence to reference audio also captures its energy envelope."
+                },
+                {
+                    "feature": "energy_rms_variance",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "CFG affects how dynamically the energy varies across time."
+                },
+                {
+                    "feature": "spectral_centroid_mean",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "CFG conditioning adherence shapes spectral envelope of output."
+                },
+                {
+                    "feature": "spectral_rolloff_mean",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "CFG constrains frequency rolloff toward reference."
+                },
+                {
+                    "feature": "spectral_bandwidth_mean",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "CFG narrows bandwidth toward reference when strength is high."
+                },
+                {
+                    "feature": "spectral_contrast_mean",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "High CFG preserves harmonic-noise contrast from reference conditioning."
+                },
+                {
+                    "feature": "vq_harmonic_ratio",
+                    "relationship_type": "COUPLED",
+                    "evidence": "Extreme CFG can introduce artifacts that depress harmonic ratio."
+                }
+            ]
+        },
+        "sway_sampling_coef": {
+            "lever_id": "CFM-003",
+            "name": "sway_sampling_coef",
+            "file": "src/f5_tts/model/cfm.py",
+            "class": "CFM",
+            "function": "sample",
+            "variable": "sway_sampling_coef",
+            "accessibility": "API_ACCESSIBLE",
+            "coupling": "HIGH",
+            "linearity": "NON_LINEAR",
+            "safety": "LOW",
+            "expected_influence": {
+                "Voice Quality": "MEDIUM",
+                "Spectral": "MEDIUM",
+                "Pitch": "LOW",
+                "Energy": "LOW",
+                "Rhythm": "NONE"
+            },
+            "evidence_source": "SOURCE_CODE_INSPECTION",
+            "notes": "Warps timestep distribution: t = t + coef*(cos(pi/2*t) - 1 + t).",
+            "connected_features": [
+                {
+                    "feature": "spectral_centroid_mean",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Timestep warping changes which frequency components emerge first in integration."
+                },
+                {
+                    "feature": "spectral_rolloff_mean",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Sway sampling affects high-frequency integration fidelity."
+                },
+                {
+                    "feature": "spectral_bandwidth_mean",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Timestep concentration affects spectral band resolution."
+                },
+                {
+                    "feature": "vq_zero_crossing_rate",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Sway warping affects integration smoothness in high-frequency bands."
+                },
+                {
+                    "feature": "vq_spectral_flatness",
+                    "relationship_type": "INDIRECT",
+                    "evidence": "Timestep distribution shapes noise floor."
+                }
+            ]
+        },
+        "edit_mask": {
+            "lever_id": "CFM-004",
+            "name": "edit_mask",
+            "file": "src/f5_tts/model/cfm.py",
+            "class": "CFM",
+            "function": "sample",
+            "variable": "edit_mask",
+            "accessibility": "API_ACCESSIBLE",
+            "coupling": "LOW",
+            "linearity": "BINARY",
+            "safety": "MEDIUM",
+            "expected_influence": {
+                "Rhythm": "HIGH",
+                "Pitch": "MEDIUM",
+                "Energy": "MEDIUM",
+                "Voice Quality": "MEDIUM",
+                "Spectral": "MEDIUM"
+            },
+            "evidence_source": "SOURCE_CODE_INSPECTION",
+            "notes": "Requires external VAD/segmentation to generate the boolean mask tensor.",
+            "connected_features": [
+                {
+                    "feature": "pitch_voiced_ratio",
+                    "relationship_type": "DIRECT",
+                    "evidence": "Masking voiced frames forces model to regenerate only unvoiced regions."
+                }
+            ]
+        },
+        "drop_audio_cond": {
+            "lever_id": "DIT-001",
+            "name": "drop_audio_cond",
+            "file": "src/f5_tts/model/backbones/dit.py",
+            "class": "DiT",
+            "function": "forward",
+            "variable": "drop_audio_cond",
+            "accessibility": "INTERNAL_ONLY",
+            "coupling": "EXTREME",
+            "linearity": "BINARY",
+            "safety": "EXTREME_RISK",
+            "expected_influence": {
+                "Pitch": "EXTREME",
+                "Energy": "EXTREME",
+                "Voice Quality": "EXTREME",
+                "Spectral": "EXTREME",
+                "Rhythm": "EXTREME"
+            },
+            "evidence_source": "SOURCE_CODE_INSPECTION",
+            "notes": "Routing flag for CFG null branch. Zeroes conditioning tensor. Must not be exposed.",
+            "connected_features": []
+        }
+    }
+}

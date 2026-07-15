@@ -1,0 +1,71 @@
+{
+    "experiment_id": "experiment_000001",
+    "experiment_builder_version": "1.0.0",
+    "timestamp": "20260714_230654",
+    "inference_metadata": {
+        "ref_audio": "ref_viet.wav",
+        "gen_audio": "gen_001.wav"
+    },
+    "runtime_metadata": {
+        "platform": "Windows",
+        "platform_release": "10",
+        "python_version": "3.10.11",
+        "hostname": "THE-ANH-PC"
+    },
+    "feature_snapshot": {
+        "ref_features_path": "dataset\\experiment_000001\\ref_features.json",
+        "gen_features_path": "dataset\\experiment_000001\\gen_features.json",
+        "feature_vector_path": "dataset\\experiment_000001\\feature_vector.npy",
+        "vector_shape": [
+            3,
+            19
+        ],
+        "feature_registry": [
+            "pitch_f0_mean",
+            "pitch_f0_variance",
+            "pitch_voiced_ratio",
+            "energy_rms_mean",
+            "energy_rms_variance",
+            "energy_peak",
+            "energy_crest_factor",
+            "rhythm_speech_duration",
+            "rhythm_silence_duration",
+            "rhythm_speech_rate",
+            "rhythm_pause_count",
+            "rhythm_mean_pause_duration",
+            "spectral_centroid_mean",
+            "spectral_rolloff_mean",
+            "spectral_bandwidth_mean",
+            "spectral_contrast_mean",
+            "vq_zero_crossing_rate",
+            "vq_spectral_flatness",
+            "vq_harmonic_ratio"
+        ],
+        "feature_dimension": 19
+    },
+    "parameter_snapshot": {
+        "parameters_path": "dataset\\experiment_000001\\parameters.json",
+        "parameter_vector_path": "dataset\\experiment_000001\\parameter_vector.npy",
+        "parameter_dimension": 6,
+        "provenance": "default",
+        "values": {
+            "speed": 1.0,
+            "target_rms": 0.1,
+            "cfg_strength": 2.0,
+            "nfe_step": 32,
+            "sway_sampling_coef": -1.0,
+            "cross_fade_duration": 0.15
+        }
+    },
+    "benchmark_report_path": null,
+    "observation_report_path": null,
+    "files": {
+        "ref_features": "dataset\\experiment_000001\\ref_features.json",
+        "gen_features": "dataset\\experiment_000001\\gen_features.json",
+        "feature_vector": "dataset\\experiment_000001\\feature_vector.npy",
+        "parameters": "dataset\\experiment_000001\\parameters.json",
+        "parameter_vector": "dataset\\experiment_000001\\parameter_vector.npy",
+        "benchmark_report": null,
+        "observation_report": null
+    }
+}

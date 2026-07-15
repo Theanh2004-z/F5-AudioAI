@@ -1,0 +1,24 @@
+{
+    "dataset_version": "1.0.0",
+    "created_at": "20260714_230654",
+    "total_samples": 2,
+    "samples": [
+        {
+            "experiment_id": "experiment_000001",
+            "experiment_dir": "dataset\\experiment_000001",
+            "registered_at": "20260714_230654",
+            "timestamp": "20260714_230654",
+            "provenance": "default",
+            "manifest": "dataset\\experiment_000001\\experiment_manifest.json"
+        },
+        {
+            "experiment_id": "experiment_000002",
+            "experiment_dir": "dataset\\experiment_000002",
+            "registered_at": "20260714_230654",
+            "timestamp": "20260714_230654",
+            "provenance": "manual",
+            "manifest": "dataset\\experiment_000002\\experiment_manifest.json"
+        }
+    ],
+    "last_updated": "20260714_230654"
+}

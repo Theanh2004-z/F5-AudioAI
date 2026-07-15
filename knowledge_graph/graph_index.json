@@ -1,0 +1,146 @@
+{
+    "metadata": {
+        "version": "1.0.0",
+        "timestamp": "20260714_225814"
+    },
+    "feature_to_levers": {
+        "pitch_f0_mean": [
+            "cfg_strength"
+        ],
+        "pitch_f0_variance": [
+            "cfg_strength"
+        ],
+        "pitch_voiced_ratio": [
+            "cfg_strength",
+            "edit_mask"
+        ],
+        "energy_rms_mean": [
+            "target_rms",
+            "cfg_strength"
+        ],
+        "energy_rms_variance": [
+            "cfg_strength"
+        ],
+        "energy_peak": [
+            "target_rms"
+        ],
+        "energy_crest_factor": [
+            "target_rms"
+        ],
+        "rhythm_speech_duration": [
+            "speed"
+        ],
+        "rhythm_silence_duration": [
+            "speed",
+            "cross_fade_duration"
+        ],
+        "rhythm_speech_rate": [
+            "speed"
+        ],
+        "rhythm_pause_count": [
+            "cross_fade_duration"
+        ],
+        "rhythm_mean_pause_duration": [
+            "speed",
+            "cross_fade_duration"
+        ],
+        "spectral_centroid_mean": [
+            "cfg_strength",
+            "sway_sampling_coef"
+        ],
+        "spectral_rolloff_mean": [
+            "cfg_strength",
+            "sway_sampling_coef"
+        ],
+        "spectral_bandwidth_mean": [
+            "cfg_strength",
+            "sway_sampling_coef"
+        ],
+        "spectral_contrast_mean": [
+            "cfg_strength"
+        ],
+        "vq_zero_crossing_rate": [
+            "nfe_step",
+            "sway_sampling_coef"
+        ],
+        "vq_spectral_flatness": [
+            "nfe_step",
+            "sway_sampling_coef"
+        ],
+        "vq_harmonic_ratio": [
+            "nfe_step",
+            "cfg_strength"
+        ]
+    },
+    "lever_to_features": {
+        "cfg_strength": [
+            "pitch_f0_mean",
+            "pitch_f0_variance",
+            "pitch_voiced_ratio",
+            "energy_rms_mean",
+            "energy_rms_variance",
+            "spectral_centroid_mean",
+            "spectral_rolloff_mean",
+            "spectral_bandwidth_mean",
+            "spectral_contrast_mean",
+            "vq_harmonic_ratio"
+        ],
+        "edit_mask": [
+            "pitch_voiced_ratio"
+        ],
+        "target_rms": [
+            "energy_rms_mean",
+            "energy_peak",
+            "energy_crest_factor"
+        ],
+        "speed": [
+            "rhythm_speech_duration",
+            "rhythm_silence_duration",
+            "rhythm_speech_rate",
+            "rhythm_mean_pause_duration"
+        ],
+        "cross_fade_duration": [
+            "rhythm_silence_duration",
+            "rhythm_pause_count",
+            "rhythm_mean_pause_duration"
+        ],
+        "sway_sampling_coef": [
+            "spectral_centroid_mean",
+            "spectral_rolloff_mean",
+            "spectral_bandwidth_mean",
+            "vq_zero_crossing_rate",
+            "vq_spectral_flatness"
+        ],
+        "nfe_step": [
+            "vq_zero_crossing_rate",
+            "vq_spectral_flatness",
+            "vq_harmonic_ratio"
+        ]
+    },
+    "lever_accessibility": {
+        "speed": "API_ACCESSIBLE",
+        "target_rms": "API_ACCESSIBLE",
+        "cross_fade_duration": "API_ACCESSIBLE",
+        "nfe_step": "API_ACCESSIBLE",
+        "cfg_strength": "API_ACCESSIBLE",
+        "sway_sampling_coef": "API_ACCESSIBLE",
+        "edit_mask": "API_ACCESSIBLE",
+        "drop_audio_cond": "INTERNAL_ONLY"
+    },
+    "lever_dependencies": {
+        "cfg_strength": [
+            "drop_audio_cond"
+        ],
+        "sway_sampling_coef": [
+            "nfe_step"
+        ],
+        "edit_mask": [
+            "cfg_strength"
+        ],
+        "speed": [],
+        "target_rms": [],
+        "cross_fade_duration": [],
+        "nfe_step": [],
+        "drop_audio_cond": []
+    }
+}

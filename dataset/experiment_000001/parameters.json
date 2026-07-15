@@ -1,0 +1,21 @@
+{
+    "snapshot_version": "1.0.0",
+    "provenance": "default",
+    "parameter_registry_ordered": [
+        "speed",
+        "target_rms",
+        "cfg_strength",
+        "nfe_step",
+        "sway_sampling_coef",
+        "cross_fade_duration"
+    ],
+    "parameter_dimension": 6,
+    "values": {
+        "speed": 1.0,
+        "target_rms": 0.1,
+        "cfg_strength": 2.0,
+        "nfe_step": 32,
+        "sway_sampling_coef": -1.0,
+        "cross_fade_duration": 0.15
+    }
+}

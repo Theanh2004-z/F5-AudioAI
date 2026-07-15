@@ -1,0 +1,81 @@
+{
+    "metadata": {
+        "analysis_version": "1.1.0",
+        "timestamp": "20260714_170421",
+        "reference": {
+            "sample_rate": 24000,
+            "duration": 49.166,
+            "frame_count": 1179984,
+            "hop_length": 256
+        },
+        "generated": {
+            "sample_rate": 24000,
+            "duration": 39.381083333333336,
+            "frame_count": 945146,
+            "hop_length": 256
+        }
+    },
+    "reference": {
+        "pitch_f0_mean": 255.28847863449585,
+        "pitch_f0_variance": 4784.4886924902685,
+        "pitch_voiced_ratio": 0.4629067245119306,
+        "energy_rms_mean": 0.025145946070551872,
+        "energy_rms_variance": 0.0012042321031913161,
+        "energy_peak": 0.514739990234375,
+        "energy_crest_factor": 12.010305404663086,
+        "rhythm_speech_duration": 24.32,
+        "rhythm_silence_duration": 24.845999999999997,
+        "rhythm_speech_rate": 112.5,
+        "rhythm_pause_count": 18.0,
+        "rhythm_mean_pause_duration": 0.7845925925925926,
+        "spectral_centroid_mean": 1363.2742992089168,
+        "spectral_rolloff_mean": 2589.269251626898,
+        "spectral_bandwidth_mean": 1257.7561068256462,
+        "spectral_contrast_mean": 19.523114979537898,
+        "vq_zero_crossing_rate": 0.05999800874457701,
+        "vq_spectral_flatness": 0.32930734753608704,
+        "vq_harmonic_ratio": 0.42284876108169556
+    },
+    "generated": {
+        "pitch_f0_mean": 116.23296169438282,
+        "pitch_f0_variance": 3864.0203612442087,
+        "pitch_voiced_ratio": 0.21072589382448537,
+        "energy_rms_mean": 0.09728545695543289,
+        "energy_rms_variance": 0.0019738490227609873,
+        "energy_peak": 0.7737555503845215,
+        "energy_crest_factor": 7.234714984893799,
+        "rhythm_speech_duration": 39.381083333333336,
+        "rhythm_silence_duration": 0.0,
+        "rhythm_speech_rate": 112.5,
+        "rhythm_pause_count": 0.0,
+        "rhythm_mean_pause_duration": 0.0,
+        "spectral_centroid_mean": 1794.215264789953,
+        "spectral_rolloff_mean": 3569.997206798483,
+        "spectral_bandwidth_mean": 2155.8066392358337,
+        "spectral_contrast_mean": 21.94839322057165,
+        "vq_zero_crossing_rate": 0.07173449349945829,
+        "vq_spectral_flatness": 0.016805818304419518,
+        "vq_harmonic_ratio": 0.4337822496891022
+    },
+    "difference": {
+        "pitch_f0_mean_difference": -139.05551694011302,
+        "pitch_f0_variance_difference": -920.4683312460597,
+        "pitch_voiced_ratio_difference": -0.25218083068744523,
+        "energy_rms_mean_difference": 0.07213951088488102,
+        "energy_rms_variance_difference": 0.0007696169195696712,
+        "energy_peak_difference": 0.2590155601501465,
+        "energy_crest_factor_difference": -4.775590419769287,
+        "rhythm_speech_duration_difference": 15.061083333333336,
+        "rhythm_silence_duration_difference": -24.845999999999997,
+        "rhythm_speech_rate_difference": 0.0,
+        "rhythm_pause_count_difference": -18.0,
+        "rhythm_mean_pause_duration_difference": -0.7845925925925926,
+        "spectral_centroid_mean_difference": 430.94096558103615,
+        "spectral_rolloff_mean_difference": 980.7279551715851,
+        "spectral_bandwidth_mean_difference": 898.0505324101875,
+        "spectral_contrast_mean_difference": 2.4252782410337517,
+        "vq_zero_crossing_rate_difference": 0.011736484754881281,
+        "vq_spectral_flatness_difference": -0.3125015292316675,
+        "vq_harmonic_ratio_difference": 0.010933488607406616
+    }
+}

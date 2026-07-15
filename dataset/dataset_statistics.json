@@ -1,0 +1,200 @@
+{
+    "total_samples": 2,
+    "provenance_breakdown": {
+        "default": 1,
+        "manual": 1
+    },
+    "feature_diff_statistics": {
+        "pitch_f0_mean": {
+            "mean": 2.5,
+            "std": 7.5,
+            "min": -5.0,
+            "max": 10.0,
+            "median": 2.5
+        },
+        "pitch_f0_variance": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "pitch_voiced_ratio": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "energy_rms_mean": {
+            "mean": 1.862645149230957e-09,
+            "std": 0.020000001415610313,
+            "min": -0.019999999552965164,
+            "max": 0.020000003278255463,
+            "median": 1.862645149230957e-09
+        },
+        "energy_rms_variance": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "energy_peak": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "energy_crest_factor": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "rhythm_speech_duration": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "rhythm_silence_duration": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "rhythm_speech_rate": {
+            "mean": -0.5,
+            "std": 6.5,
+            "min": -7.0,
+            "max": 6.0,
+            "median": -0.5
+        },
+        "rhythm_pause_count": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "rhythm_mean_pause_duration": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "spectral_centroid_mean": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "spectral_rolloff_mean": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "spectral_bandwidth_mean": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "spectral_contrast_mean": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "vq_zero_crossing_rate": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "vq_spectral_flatness": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        },
+        "vq_harmonic_ratio": {
+            "mean": 0.0,
+            "std": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "median": 0.0
+        }
+    },
+    "parameter_statistics": {
+        "speed": {
+            "mean": 1.100000023841858,
+            "std": 0.10000002384185791,
+            "min": 1.0,
+            "max": 1.2000000476837158,
+            "median": 1.100000023841858
+        },
+        "target_rms": {
+            "mean": 0.10999999940395355,
+            "std": 0.009999997913837433,
+            "min": 0.10000000149011612,
+            "max": 0.11999999731779099,
+            "median": 0.10999999940395355
+        },
+        "cfg_strength": {
+            "mean": 2.25,
+            "std": 0.25,
+            "min": 2.0,
+            "max": 2.5,
+            "median": 2.25
+        },
+        "nfe_step": {
+            "mean": 32.0,
+            "std": 0.0,
+            "min": 32.0,
+            "max": 32.0,
+            "median": 32.0
+        },
+        "sway_sampling_coef": {
+            "mean": -1.0,
+            "std": 0.0,
+            "min": -1.0,
+            "max": -1.0,
+            "median": -1.0
+        },
+        "cross_fade_duration": {
+            "mean": 0.15000000596046448,
+            "std": 0.0,
+            "min": 0.15000000596046448,
+            "max": 0.15000000596046448,
+            "median": 0.15000000596046448
+        }
+    },
+    "matrix_shapes": {
+        "feat_matrix": [
+            2,
+            57
+        ],
+        "param_matrix": [
+            2,
+            6
+        ]
+    },
+    "export_version": "1.0.0",
+    "dataset_version": "1.0.0",
+    "export_timestamp": "20260714_230654",
+    "errors": []
+}
